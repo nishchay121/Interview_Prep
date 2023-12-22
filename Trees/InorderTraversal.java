@@ -14,44 +14,60 @@ import java.util.Stack;
 import Leetcode_Template.TreeNode;
 
 public class InorderTraversal {
-    //Recursive Solution
-    public static void main(String[] args) {
-        //we call the main 
-        Solution sol = new Solution();
 
-    }
-}
-/*
- * Implemented a leetcode solution style class
- * we will create its object and call to run and test
- */
-class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
+        /**
+         * this is recursive solution
+         */
+        
+        // List<Integer> res = new ArrayList<>();
+        // inorderTraversalHelper(root,res);
+        // return res;
+        
+
+        /**
+         * This is iterative solution
+         */
+        return inorderIterativeHelper(root);
+    }
+
+    /**
+     * helper method for recursive solution
+     * 
+     * @param root Root node
+     * @param ans  list of node values ordered inorderly
+     */
+    public void inorderTraversalHelper(TreeNode root, List<Integer> ans) {
+        if (root == null)
+            return;
+        inorderTraversalHelper(root.left, ans);
+        ans.add(root.val);
+        inorderTraversalHelper(root.right, ans);
+    }
+
+    /**
+     * method for iterative solution
+     * 
+     * @param root
+     * @return
+     */
+    public List<Integer> inorderIterativeHelper(TreeNode root) {
         List<Integer> ans = new ArrayList<>();
-        //inorderTraversalHelper(root, ans);
-        //return ans;
-        Stack<TreeNode> st = new Stack<>();
+        Stack<TreeNode> st = new Stack<>(); //to simulate recursive behaviour
         if (root == null)
             return ans;
-        //st.push(root);
-        TreeNode temp = root;
-        while(temp != null || !st.isEmpty()){
-            while (temp != null ){
-                st.push(temp);
+        TreeNode temp = root; //iterate without changing root
+        while (temp != null || !st.isEmpty()) {
+            while (temp != null) {
+                st.push(temp);//keep pushing left child
                 temp = temp.left;
             }
-            temp = st.pop();
+            temp = st.pop();// all left child finished, leaf reached.. pop from stack and go right
             ans.add(temp.val);
             temp = temp.right;
 
         }
         return ans;
     }
-    public void inorderTraversalHelper(TreeNode root,List<Integer> ans ){
-        if(root == null)
-            return ;
-        inorderTraversalHelper(root.left, ans);
-        ans.add(root.val);
-        inorderTraversalHelper(root.right,ans);
-    }
+
 }
