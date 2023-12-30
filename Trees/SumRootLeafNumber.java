@@ -6,15 +6,14 @@ import Leetcode_Template.TreeNode;
 
 public class SumRootLeafNumber {
     public int sumNumbers(TreeNode root) {
-        //similar logic
+        //iterative preorder
         if(root == null)
             return 0;
-        Stack<TreeNode> st = new Stack<>();
-        Stack<Integer> path = new Stack<>();
-        int sum = 0;
+        Stack<TreeNode> st = new Stack<>();//traversal stack
+        Stack<Integer> path = new Stack<>();//stack for number forme
+        int sum = 0; //stores result
         st.push(root);
         path.push(root.val);
-        //int num = 0;
         while(!st.isEmpty()){
             TreeNode curr = st.pop();
             int num = path.pop();
@@ -36,7 +35,7 @@ public class SumRootLeafNumber {
         // return pathSumHelper(root, 0);
        
     }
-    
+
   /**
    *  This is iterative method with return parameter. We can also have void method with global variable.
    *  but global variable comes with memory concern so i went with return parameter
