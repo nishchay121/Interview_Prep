@@ -61,4 +61,7 @@ public class SumRootLeafNumber {
         return leftNumber + rightNumber ;
 
     }
+    /*
+     * Morris traversal is done in O(1) space... need to check it out
+     */
 }
