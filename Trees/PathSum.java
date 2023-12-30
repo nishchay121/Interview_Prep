@@ -6,7 +6,9 @@ import Leetcode_Template.TreeNode;
 
 public class PathSum {
     public boolean hasPathSum(TreeNode root, int targetSum) {
-    
+        
+        return iterativeSolution(root, targetSum);
+
        /*
         * recursive solution
         */
