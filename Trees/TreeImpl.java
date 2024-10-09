@@ -65,7 +65,7 @@ public class TreeImpl {
         System.out.println(" postorder " + n.data);
     }
 
-    public static void main(String [] args){
+    public static Node treeCosntruction(){
         Integer[] nodes = {50,30,16,null,null,8,9,null,null,null,70,6,null,12,null,null,40};
         Node n = new Node(nodes[0]);
         Pair p = new Pair(n,1);
@@ -111,14 +111,19 @@ public class TreeImpl {
             }
             
         }
+        return n;
+    }
+    public static void main(String [] args){
+       
+       Node root = treeCosntruction();
         System.out.println("Tree Display Starts");
         //Tree Display,pass the root node
-        display(n);
+        display(root);
         //Tree traversal
 
-        traversal(n);
+        traversal(root);
         System.out.println();
-        allTraversal(n);
+        allTraversal(root);
     }
 
 }
