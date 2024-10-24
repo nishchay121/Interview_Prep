@@ -2,6 +2,18 @@ package Trees;
 
 import Leetcode_Template.TreeNode;
 
+class BalNode{
+    Boolean isBal;
+    int height;
+    BalNode(Boolean isBal, int height){
+        this.isBal = isBal;
+        this.height = height;
+    }
+    BalNode(){
+        this.isBal = null;
+        height = 0;
+    }
+}
 public class BalancedBinaryTree {
     
     public boolean isBalanced(TreeNode root) {
@@ -29,4 +41,23 @@ public class BalancedBinaryTree {
                return -1; //if current node is unbalanced.
            return Math.max(leftDepth,rightDepth) + 1;
        }
+
+    
+       /*
+        * Using custom class
+        */
+
+    public BalNode isBalancedHeler2(TreeNode root){
+        if(root == null){
+            return new BalNode(true, 0);
+        }
+        BalNode leftBalNode = isBalancedHeler2(root.left);
+        BalNode rightBalNode = isBalancedHeler2(root.right);
+
+        BalNode currNode = new BalNode();
+        currNode.isBal = Math.abs(leftBalNode.height - rightBalNode.height) <=1 && leftBalNode.isBal && rightBalNode.isBal;
+        currNode.height = Math.max(leftBalNode.height,rightBalNode.height) + 1;
+        return currNode;
+    }
+
 }
