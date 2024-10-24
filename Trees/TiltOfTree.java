@@ -14,8 +14,9 @@ public class TiltOfTree {
 
     public int findTilt(TreeNode root) {
        Pair finalSum = tiltHelper(root);
-       return finalSum.tilt;
-        
+        int finalSum2 = tiltHelper2(root);
+       // return finalSum.tilt;
+        return sumVal;
     }
     public Pair tiltHelper(TreeNode root){
         if (root == null)
@@ -30,4 +31,19 @@ public class TiltOfTree {
         Pair newPair = new Pair(leftTilt.sum + rightTilt.sum + root.val, leftTilt.tilt + rightTilt.tilt + newTilt);
        return newPair;
     }
+    /*second method with Gloabl variable */
+    public int tiltHelper2(TreeNode root){
+         if (root == null)
+             return 0;
+         //get left sum
+        int leftTilt = tiltHelper2(root.left);
+         //get right sum
+        int rightTilt = tiltHelper2(root.right);
+ 
+         int newTilt = Math.abs(leftTilt - rightTilt);
+         //update overall tilt
+         sumVal += newTilt;
+         // return sum
+         return leftTilt+rightTilt+ root.val;
+     }
 }
